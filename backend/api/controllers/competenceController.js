@@ -3,7 +3,7 @@
 let database = require('../config/database');
 
 module.exports.findAll = function(req, res){
-	const query = 'SELECT * FROM competenties ALLOW FILTERING';
+	const query = 'SELECT * FROM competences';
 
 	database.executeReader(query, function(result){
 		if(result.success)
@@ -14,11 +14,11 @@ module.exports.findAll = function(req, res){
 		{
 			res.send(result.err);
 		}
-	}, params);	
+	});	
 };
 
 module.exports.getById = function(req, res){
-	const query = 'SELECT * FROM competenties WHERE id = ? ALLOW FILTERING';
+	const query = 'SELECT * FROM competences WHERE id = ? ALLOW FILTERING';
 	let params = [req.params.competentie_id];
 
 	database.executeReader(query, function(result){
@@ -33,9 +33,9 @@ module.exports.getById = function(req, res){
 	}, params);	
 };
 
-module.exports.getByNaam = function(req, res){
-	const query = 'SELECT * FROM competenties WHERE naam = ? ALLOW FILTERING';
-	let params = [req.params.naam];
+module.exports.getByname = function(req, res){
+	const query = 'SELECT * FROM competences WHERE name = ? ALLOW FILTERING';
+	let params = [req.params.name];
 
 	database.executeReader(query, function(result){
 		if(result.success)
@@ -50,8 +50,8 @@ module.exports.getByNaam = function(req, res){
 };
 
 module.exports.create = function(req, res){
-	const query = 'INSERT INTO competenties (id, naam, beschrijving) VALUES (now(),?,?)';
-	let params = [req.params.naam, req.params.beschrijving];
+	const query = 'INSERT INTO competences (id, name, description) VALUES (now(),?,?)';
+	let params = [req.params.name, req.params.description];
 	database.executeNonReader(query, function(result){
 		if(result.success)
 		{
@@ -65,8 +65,8 @@ module.exports.create = function(req, res){
 };
 
 module.exports.updateById = function(req, res){
-	const query = 'UPDATE competenties SET naam = ?, beschrijving = ? WHERE id = ?';
-	let params = [req.params.naam, req.params.beschrijving, req.params.competentie_id];
+	const query = 'UPDATE competences SET name = ?, description = ? WHERE id = ?';
+	let params = [req.params.name, req.params.description, req.params.competentie_id];
 
 	database.executeNonReader(query, function(result){
 		if(result.success)
@@ -81,7 +81,7 @@ module.exports.updateById = function(req, res){
 };
 
 module.exports.deleteById = function(req, res){
-	const query = 'DELETE FROM competenties WHERE id = ?';
+	const query = 'DELETE FROM competences WHERE id = ?';
 	let params = [req.params.competentie_id];
 	
 	database.executeNonReader(query, function(result){

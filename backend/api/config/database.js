@@ -1,6 +1,6 @@
 'use strict';
 const cassandra = require('cassandra-driver');
-const client = new cassandra.Client({contactPoints:['127.0.0.1','h2'], keyspace:'test'});
+const client = new cassandra.Client({contactPoints:['127.0.0.1','h2'], keyspace:'yourdb'});
 
 module.exports.client = client;
 

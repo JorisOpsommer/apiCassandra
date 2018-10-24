@@ -2,10 +2,10 @@
 
 let express = require('express'),
 	router = express.Router(),
-	competentieController = require('../controllers/competentieController');
+	competentieController = require('../controllers/competenceController');
 
 
-router.route('/competenties')
+router.route('/competences')
 	.post(competentieController.create)
 	.get(competentieController.findAll);
 
