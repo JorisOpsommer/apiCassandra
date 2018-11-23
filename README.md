@@ -5,5 +5,5 @@ Template for a simple backend using Cassandra as database.
 To generate the database+table on cassandra, run createDb.cql
 
 Run: navigate to /backend
-npm install
-npm start
+<br />npm install
+<br />npm start
